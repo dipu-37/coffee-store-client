@@ -1,4 +1,6 @@
 
+import Swal from 'sweetalert2'
+
 const AddCoffee = () => {
 
     const handleAddCoffee = event => {
@@ -27,7 +29,16 @@ const AddCoffee = () => {
             body:JSON.stringify(newCoffee)
         })
         .then(res=>res.json())
-        .then(data =>console.log(data))
+        .then(data =>{console.log(data)
+            if(data.insertedId){
+                Swal.fire({
+                    title: 'success!',
+                    text: 'User added successfully',
+                    icon: 'success',
+                    confirmButtonText: 'ok'
+                  })
+            }
+        })
     }
 
     return (
